@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<main class="listing">
+  <h2 class="listing__heading">{{ title }}</h2>
+  <div class="listing__container-buton">
+    <a class="listing__buton" href="{% url 'auctions:index' %}">
+      <i class="fa-solid fa-circle-arrow-left">
+        Volver
+      </i>
+    </a>
+  </div>
+  <div class="listing__forms">
+    <form class="forms" action="{% url 'auctions:addNew' %}" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+        {% include "./forms/formsArticulos.html" %}
+        <input type="submit" class="forms__submit forms__submit--registrar" value="Publicar Articulo">
+    </form>
+  </div>
+</main>
+
+{% endblock %}
+

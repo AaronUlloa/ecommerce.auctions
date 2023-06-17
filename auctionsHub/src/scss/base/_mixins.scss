@@ -1,0 +1,165 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+  @media (min-width: v.$telefono) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (min-width: v.$tablet) {
+    @content;
+  }
+}
+@mixin desktop {
+  @media (min-width: v.$desktop) {
+    @content;
+  }
+}
+@mixin xl_desktop {
+  @media (min-width: v.$xl_desktop) {
+    @content;
+  }
+}
+
+@mixin boton($bgColor, $colorTexto) {
+  background-color: $bgColor;
+  padding: 0.5rem 1rem;
+  color: $colorTexto;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  border-radius: 20px;
+  outline: none;
+
+  &:hover {
+    background-color: darken($bgColor, 10%);
+    cursor: pointer;
+  }
+}
+@mixin boton-sm($bgColor, $colorTexto) {
+  background-color: $bgColor;
+  padding: 1.5rem 4rem;
+  color: $colorTexto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  transition-property: background-color;
+  transition-duration: 0.3s;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
+
+  &:hover {
+    background-color: darken($bgColor, 10%);
+    cursor: pointer;
+  }
+}
+
+@mixin grid($columnas, $espaciado) {
+  display: grid;
+  gap: $espaciado;
+  grid-template-columns: repeat($columnas, 1fr);
+}
+@mixin container {
+  // max-width: 120rem;
+  // width: 95%;
+  width: min(95%, 140rem);
+  margin: 0 auto;
+}
+
+@mixin container-sm {
+  // max-width: 120rem;
+  // width: 95%;
+  width: min(95%, 60rem);
+  margin: 0 auto;
+}
+@mixin container-md {
+  // max-width: 120rem;
+  // width: 95%;
+  width: min(95%, 80rem);
+  margin: 0 auto;
+}
+
+@mixin headings {
+  font-family: v.$fuente_principal;
+  font-weight: v.$black;
+  margin: 2rem 0;
+}
+@mixin inf-text{
+  font-family: v.$fuente_principal;
+  font-weight: v.$delgada;
+  margin: 1rem 0;
+}
+@mixin normal-text {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: v.$delgada;
+  color: v.$gris-oscuro;
+  margin-bottom: 5rem;
+}
+
+@mixin card {
+  border: 1px solid lighten(v.$gris, 10);
+  padding: 3rem;
+  &__nombre {
+    font-weight: v.$black;
+    font-size: 2.6rem;
+    margin: 2rem 0;
+  }
+}
+@mixin page-name {
+  @include headings;
+  margin: 6rem 0 3rem 0;
+  text-align: center;
+}
+@mixin fluid-text ($min, $max){
+ font-size: clamp($min, -0.8rem + 10vw ,$max);
+}
+@mixin fade-text ($start, $end){
+  background: linear-gradient(to right, $start, $end);
+  background-clip: text;
+  color: transparent;
+}
+@mixin logo{
+  color: v.$blanco;
+  text-align: center;
+  margin-bottom: 2rem;
+  white-space: nowrap;
+  @include desktop {
+    text-align: left;
+    margin: 0;
+  }
+}
+@mixin links{
+    color: v.$blanco;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+
+    &:hover {
+        color: orange;
+        cursor: pointer;
+    }
+}
+@mixin links-dp{
+    color: v.$gris-oscuro;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: v.$bold;
+
+    &:hover {
+        color: orange;
+        cursor: pointer;
+    }
+}
+@mixin reset-lista {
+  margin: 8;
+  padding: 0;
+  list-style: none;
+}
+@mixin shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

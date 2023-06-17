@@ -1,0 +1,87 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.bidhub{
+  &__grid{
+    @include m.container;
+    @include m.grid(1, 5rem);
+    @include m.tablet{
+      @include m.grid(2, 5rem);
+    }
+    @include m.xl_desktop{
+      @include m.grid(3, 5rem);
+    }
+  }
+  &__texto{
+    line-height: 2;
+  }
+}
+.bidhubs{
+  @include m.card;
+  background-position: center top;
+
+  &:nth-child(4n + 1){
+    background-image: image-set(
+      url=('../../img/bg_1.png'), 1x    
+    );
+  }
+  &__description{
+    font-size: 1.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    @include m.tablet{
+      -webkit-line-clamp: 2;
+    }
+  }
+  &__price-text{
+    color: v.$gris-oscuro;
+    margin: 1rem 0;
+    font-size: 2rem;
+    line-height: 1.5;
+    display: inline;
+  }
+  &__price{
+    color: v.$verde;
+    margin: 1rem 0;
+    font-size: 2rem;
+    line-height: 1.6;
+    display: inline;
+  }
+   &__owner-text{
+    color: v.$gris-oscuro;
+    margin: 1rem 0;
+    font-size: 2rem;
+    line-height: 1.5;
+    display: inline;
+  }
+
+  &__owner{
+    color: v.$negro;
+    margin: 1rem 0;
+    font-size: 2rem;
+    line-height: 1.6;
+    display: inline;
+  }
+  &__grid-butons{
+    
+    @include m.grid(2, 5rem);
+    @include m.tablet{
+      @include m.grid(2, 5rem);
+    }
+    @include m.xl_desktop{
+      @include m.grid(2, 2rem);
+    }
+
+  }
+  &__buton{
+    @include m.boton-sm(v.$azul, v.$blanco);
+    display: inline;
+
+  }
+  &__buton-edit{
+    @include m.boton-sm(v.$verde, v.$negro);
+    display: inline;
+  }
+}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+    <main class="auth">
+        <h2 class="auth__heading">{{ title }}</h2>
+        {% if message %}
+          <p class="auth__text">{{ message }}</p>
+        {% endif %}
+        <form class="forms" action="{% url 'auctions:login' %}" method="post">
+          {% csrf_token %}
+          <div class="forms__contenedor">
+            <fieldset class="forms__fieldset">
+              <legend class="forms__legend">Inicia Sesion en BidHub</legend>
+              <div class="forms__field">
+                <label for="email" class="forms__label">Email</label>
+                <input type="email"
+                       class="forms__input"
+                       placeholder="your email here"
+                       id="email"
+                       name="email"
+                       required>
+              </div>
+              <div class="forms__field">
+                <label for="password" class="forms__label">Password</label>
+                <input type="password"
+                       class="forms__input"
+                       placeholder="your password here"
+                       id="password"
+                       name="password"
+                       required>
+              </div>
+            </fieldset>
+            <input type="submit" class="forms__submit forms__submit--registrar" value="Iniciar Sesion">
+          </div>
+        </form>
+        <div class="actions">
+            <a href="{% url 'auctions:register' %}" class="actions__link">Aun no tienes una cuenta? Registrarse ahora.</a>
+            <a href="{% url 'auctions:forget' %}" class="actions__link">Olvidaste tu Password?.</a>
+        </div>
+    </main>
+{% endblock %}

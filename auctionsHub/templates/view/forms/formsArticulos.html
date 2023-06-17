@@ -1,0 +1,72 @@
+
+<fieldset class="forms__fieldset">
+  <legend class="forms__leguend">Registra los Datos de tu Articulo</legend>
+    <div class="forms__field">
+      <label for="title" class="forms__label">Titulo(*)</label>
+      <input type="text" class="forms__input" placeholder="titulo aqui" id="title" name="title" required>
+    </div>
+    <div class="forms__field">
+      <label for="description" class="forms__label">Descripcion(*)</label>
+      <textarea rows="4" cols="2" class="forms__input" id="description" name="description" required></textarea>
+      <!-- <input type="email" class="forms__input" placeholder="your email here" id="email" name="email" required> -->
+    </div>
+    <div class="forms__field">
+      <label for="image1" class="forms__label">Imagen 1</label>
+      <input type="file" class="forms__input forms__input--file" placeholder="tu primera imagen" id="image1" name="image1" accept=".jpg, .jpeg, .png"  required>
+    </div>
+    <div class="forms__field">
+      <label for="image2" class="forms__label">Imagen 2</label>
+      <input type="file" class="forms__input forms__input--file" placeholder="tu primera imagen" id="image2" name="image2" accept=".jpg, .jpeg, .png" required>
+    </div>
+    <div class="forms__field">
+      <label for="image3" class="forms__label">Imagen 3</label>
+      <input type="text" class="forms__input" placeholder="url de tu imagen" id="image3" name="image3">
+    </div>
+    <div class="forms__field">
+      <label for="category" class="forms__label">Escoge Categoria</label>
+      <select name="category" id="category" class="forms__input" required>
+        <option value="">Escoge tu Categoria</option>
+        {% for cat in categories %}
+          <option value="{{ cat }}">{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+</fieldset>
+
+<fieldset class="forms__fieldset">
+  <legend class="forms__leguend">Informacion de la Subasta</legend>
+  <div class="forms__field">
+    <label for="tipo_subasta" class="forms__label">Tipo de Subasta</label>
+    <select name="tipoSubasta" id="tipoSubasta" class="forms__input" required>
+      <option value="Inglesa">Inglesa</option>
+    </select>
+    <!-- <input type="text" class="forms__input" placeholder="e.g Nuevo, Nuevo-usado, Usado..." id="tags_input" required> -->
+    <!-- <div id="tags" class="forms__listado"> -->
+    <!--   <input type="hidden" name="tagsName" value="{{ tags }}"> -->
+    <!-- </div> -->
+  </div>
+  <!-- <div> -->
+  <!--   {{ tags }} -->
+  <!-- </div> -->
+  <div class="forms__field">
+    <label for="fechaInicio" class="forms__label">Fecha de Inicio</label>
+    <input type="date" name="fechaInicio" id="fechaInicio" class="forms__input" min="{{ now }}" value="{{ now }}" readonly required>
+
+    <!-- <input type="text" class="forms__input" placeholder="e.g Nuevo, Nuevo-usado, Usado..." id="tags_input" required> -->
+    <!-- <div id="tags" class="forms__listado"> -->
+    <!--   <input type="hidden" name="tagsName" value="{{ tags }}"> -->
+    <!-- </div> -->
+  </div>
+   <div class="forms__field">
+    <label for="fechaCierre" class="forms__label">Fecha de Cierre</label>
+    <input type="date" name="fechaCierre" id="fechaCierre" class="forms__input" min="{{ alt }}" required>
+  </div>
+ 
+  <div class="form__field">
+    <label for="price" class="forms__label">Precio</label>
+    <input type="number" name="price" id="price" class="forms__input" step="0.01" min="0" value="" required>
+  </div>
+  <h3>{{alt}}</h3>
+
+</fieldset>
+

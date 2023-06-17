@@ -1,0 +1,35 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.footer{
+    min-height: 70rem;
+    padding: 1rem 0 0;
+    background-color: v.$blanco;
+
+    &__info{
+        margin-top: 0;
+        margin-bottom: 2rem;
+        padding-left: 8rem;
+        background-color: v.$gris;
+        background-color: rgba(v.$gris, .4);
+        backdrop-filter: blur(2rem);
+        border-radius: 5rem;
+    }
+    &__link{
+        display: flex;
+        flex-direction: column;
+        @include m.desktop{
+            flex-direction: column;
+        }
+
+    }
+
+}
+
+.content__text{
+    @include m.inf-text;
+    display: flex;
+}
+
+
+

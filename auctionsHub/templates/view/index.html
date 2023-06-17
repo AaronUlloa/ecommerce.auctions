@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<main class="articulos">
+  <h2 class="articulos__heading">{{ title }}</h2>
+  <p class="articulos__descripcion">Todos los Articulos Publicados</p>
+  {% for list in articulos %}
+    <div class="articulo">
+      <picture>
+        <img class="articulo__imagen" loading="lazy" width="200" height="300" src="{{ image_url }}" alt="Articulo">
+      </picture>
+      <div class="articulo__info">
+        <h3>Titulo del Articulo</h3>
+        <h4 class="articulo__title">
+          {{ list.title }} 
+        </h4>
+        <h5 class="articulo__precio">
+          {{ list.price }} 
+        </h5>
+        <p class="articulo__descripcion">
+          {{ list.description }} 
+        </p>
+        <h4 class="articulo__usuario">
+          {{ list.owner }}
+        </h4>
+      </div>
+    </div>
+  {% endfor %}
+ </main>
+
+{% endblock %}

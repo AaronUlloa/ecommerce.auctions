@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="auth">
+  <h2 class="auth__heading">{{ title }}</h2>
+  <p class="auth__text">Recupera tu cuenta de DevShare</p>
+  <form class="forms" action="{% url 'auctions:forget' %}" method="post">
+    {% csrf_token %}
+    <div class="forms__field">
+      <label for="email" class="forms__label">Email</label>
+      <input type="email" class="forms__input" placeholder="your email here" id="email" name="email" required>
+    </div>
+    <input type="submit" class="forms__submit" value="Enviar">
+  </form>
+  <div class="actions">
+    <a href="{% url 'auctions:login' %}" class="actions__link">Iniciar Sesion.</a>
+    <a href="{% url 'auctions:register' %}" class="actions__link">Aun no tienes una cuenta? Registrarse ahora.</a>
+  </div>
+</main>
+{% endblock %}

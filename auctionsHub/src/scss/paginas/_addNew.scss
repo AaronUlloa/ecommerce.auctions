@@ -1,0 +1,34 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.listing{
+  @include m.container;
+
+  &__container-buton{
+    @include m.tablet{
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 5rem;
+    }
+  }
+  &__buton{
+    @include m.boton(v.$azul, v.$blanco);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    @include m.tablet{
+      width: auto;
+    }
+  }
+  &__container{
+    @include m.shadow;
+    background-color: v.$blanco;
+    padding: 2rem;
+    border-radius: 1rem;
+  }
+
+  &__forms{
+    @extend .listing__container;
+    @include m.container-md;
+  }
+
+}

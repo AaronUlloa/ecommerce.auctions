@@ -1,0 +1,18 @@
+@use 'base/variables' as v;
+
+.actions{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    &--centrar {
+        @extend .actions;
+        justify-content: center;
+    }
+
+    &__link {
+        color: v.$negro;
+        font-size: 1.4rem;
+        font-weight: v.$delgada;
+    }
+}

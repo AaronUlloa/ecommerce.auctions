@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>
+      {% block title %}Auction{% endblock%}
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">  
+  </head>
+  <body>
+    <header class="header">
+      <div class="navbar">
+        <div>
+          <a href="/">
+            <h5 class="navbar__logo">
+              &#60;BidHub />
+            </h4>
+          </a>
+        </div>
+        <ul class="link">
+          <li><a class="links__go" href="{% url 'auctions:index' %}">Home</a></li>
+ <!-- Agregar Condicion aqui... -->
+          {% if user.is_authenticated %}
+          <li><a class="links__go" href="#">Pubicar</a></li>
+          <li><a class="links__go" href="#">Categorias</a></li>
+          <li><a class="links__go" href="#">Carrito</a></li>
+<!-- Else de la Condicion -->
+        </ul>
+        <div class="action">
+           <a class="action__btn" href="{% url 'auctions:logout' %}">Logout</a>
+           {% else %}
+          <a class="action__btn" href="{% url 'auctions:login' %}">Login</a>
+          <a class="action__btn" href="{% url 'auctions:register' %}">Registrar</a>
+        </div>
+        {% endif %}
+        <div class="toggle_btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+<!-- Terminar Condicion -->
+      </div> 
+      <div class="dropdown_menu">
+        <li><a class="dropdown_menu__links" href="{% url 'auctions:index' %}">Home</a></li>
+ <!-- Agregar Condicion aqui... -->
+        <li><a class="dropdown_menu__links" href="#">Pubicar</a></li>
+        <li><a class="dropdown_menu__links" href="#">Categorias</a></li>
+        <li><a class="dropdown_menu__links" href="#">Carrito</a></li>
+        <li><a class="dropdown_menu__links action__btn" href="{% url 'auctions:logout' %}">Logout</a></li>
+      </div>
+    </header>
+    <div>
+      {% block body %} 
+      {% endblock%}
+    </div>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
+    <script src="{% static 'js/bundle.min.js' %}" defer></script>
+  </body>
+</html>

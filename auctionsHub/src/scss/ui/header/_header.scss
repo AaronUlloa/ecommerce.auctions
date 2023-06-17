@@ -1,0 +1,93 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.header{
+  background-color: rgba(v.$negro, 4);
+  backdrop-filter: url(filters.svg#filter) blur(4px) saturate(150%);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 0 2rem;
+}
+.navbar{
+  width: 100%;
+  height: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__logo{
+    @include m.logo;
+    @include m.fluid-text(1rem, 2rem);
+    // @include m.fade-text(v.$azul, v.$secundario);
+  }
+}
+.link{
+  display: none;
+  gap: 2rem;
+  @include m.tablet{
+    display: flex;
+  }
+}
+.links{
+
+   &__go{
+    @include m.links;
+  }
+}
+.action{
+  @include m.grid(1, 0.2rem);
+  @include m.xl_desktop{
+    @include m.grid(2, 1rem);
+  }
+  @include m.tablet{
+    @include m.grid(2, 1rem);
+  }
+  &__btn{
+    @include m.boton(orange, v.$blanco);
+    display: none;
+    @include m.tablet{
+      display: flex;
+    }
+  }
+}
+
+.toggle_btn{
+  color: v.$blanco;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: block;
+  @include m.tablet{
+    display: none;
+  }
+}
+.dropdown_menu{
+  display: block;
+  position: absolute;
+  right: 2rem;
+  top: 60px;
+  height: 0;
+  width: 200px;
+  background-color: rgb(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  overflow: hidden;
+  @include m.tablet{
+    display: none;
+  }
+  transition: height 0.2s cubic-bezier(0.117, 0.885, 0.32, 1.275);
+
+  &__links{
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include m.links-dp;
+  }
+}
+.dropdown_menu.open{
+  height: 150px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
