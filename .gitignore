@@ -1,0 +1,8 @@
+# Ignorar archivos de caché
+cache/
+
+# Ignorar archivos de registro
+logs/
+
+# Ignorar archivos de configuración específicos del entorno
+.env
