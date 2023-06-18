@@ -30,7 +30,7 @@
           <li><a class="links__go" href="{% url 'auctions:index' %}">Home</a></li>
  <!-- Agregar Condicion aqui... -->
           {% if user.is_authenticated %}
-          <li><a class="links__go" href="#">Pubicar</a></li>
+          <li><a class="links__go" href="{% url 'auctions:auction' %}">Pubicar</a></li>
           <li><a class="links__go" href="#">Categorias</a></li>
           <li><a class="links__go" href="#">Carrito</a></li>
 <!-- Else de la Condicion -->
@@ -50,7 +50,7 @@
       <div class="dropdown_menu">
         <li><a class="dropdown_menu__links" href="{% url 'auctions:index' %}">Home</a></li>
  <!-- Agregar Condicion aqui... -->
-        <li><a class="dropdown_menu__links" href="#">Pubicar</a></li>
+        <li><a class="dropdown_menu__links" href="{% url 'auctions:auction' %}">Pubicar</a></li>
         <li><a class="dropdown_menu__links" href="#">Categorias</a></li>
         <li><a class="dropdown_menu__links" href="#">Carrito</a></li>
         <li><a class="dropdown_menu__links action__btn" href="{% url 'auctions:logout' %}">Logout</a></li>

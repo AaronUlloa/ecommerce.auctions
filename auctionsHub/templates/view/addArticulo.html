@@ -12,7 +12,7 @@
     </a>
   </div>
   <div class="listing__forms">
-    <form class="forms" action="{% url 'auctions:addNew' %}" enctype="multipart/form-data" method="POST">
+    <form class="forms" action="{% url 'auctions:auction' %}" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
         {% include "./forms/formsArticulos.html" %}
         <input type="submit" class="forms__submit forms__submit--registrar" value="Publicar Articulo">

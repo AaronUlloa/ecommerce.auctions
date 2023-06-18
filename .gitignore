@@ -6,3 +6,6 @@ logs/
 
 # Ignorar archivos de configuración específicos del entorno
 .env
+
+# Ignorar carpetas de npm
+node_modules/

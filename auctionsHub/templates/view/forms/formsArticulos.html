@@ -11,26 +11,27 @@
       <!-- <input type="email" class="forms__input" placeholder="your email here" id="email" name="email" required> -->
     </div>
     <div class="forms__field">
+      <label for="category" class="forms__label">Escoge la Categoria</label>
+      <select name="category" id="category" class="forms__input" required>
+        <option value="">Escoge un Categoria</option>
+        {% for cat in Categories %}
+          <option value="{{ cat }}">{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="forms__field">
       <label for="image1" class="forms__label">Imagen 1</label>
       <input type="file" class="forms__input forms__input--file" placeholder="tu primera imagen" id="image1" name="image1" accept=".jpg, .jpeg, .png"  required>
     </div>
     <div class="forms__field">
       <label for="image2" class="forms__label">Imagen 2</label>
-      <input type="file" class="forms__input forms__input--file" placeholder="tu primera imagen" id="image2" name="image2" accept=".jpg, .jpeg, .png" required>
+      <input type="file" class="forms__input forms__input--file" placeholder="Otra imagen" id="image2" name="image2" accept=".jpg, .jpeg, .png" required>
     </div>
     <div class="forms__field">
       <label for="image3" class="forms__label">Imagen 3</label>
-      <input type="text" class="forms__input" placeholder="url de tu imagen" id="image3" name="image3">
+      <input type="file" class="forms__input" id="image3" name="image3">
     </div>
-    <div class="forms__field">
-      <label for="category" class="forms__label">Escoge Categoria</label>
-      <select name="category" id="category" class="forms__input" required>
-        <option value="">Escoge tu Categoria</option>
-        {% for cat in categories %}
-          <option value="{{ cat }}">{{ cat }}</option>
-        {% endfor %}
-      </select>
-    </div>
+
 </fieldset>
 
 <fieldset class="forms__fieldset">

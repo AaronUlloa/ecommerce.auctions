@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import User
+from .models import User, Category
 
 # Create your views here.
 
@@ -22,6 +22,15 @@ def index(request):
             # "image_url": image_url
             # "categories": allCategories
         },
+    )
+
+
+def addNewItem(request):
+    allCategories = Category.objects.all()
+    return render(
+        request,
+        "view/addArticulo.html",
+        {"title": f"Publica tu Articulo hoy mismo", "Categories": allCategories},
     )
 
 
