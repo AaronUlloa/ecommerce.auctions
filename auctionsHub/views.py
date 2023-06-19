@@ -1,50 +1,76 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import User, Category
+from django.http import HttpResponseRedirect
+from .models import AuctionItem, ItemImage
+from .forms import AuctionItemForm, ItemImageForm
+
+# from .models import AuctionItem, Category, Comment, Like, Bid, Cart, Purchase, ItemImage
 
 # Create your views here.
 
 
-def index(request):
-    # activeAuctions = AuctionStatus.objects.filter(is_active=True)
-    # imagen = Photo.objects.all()
-    # image_url = imagen.url
-    # allCategories = Category.objects.all()
+def item_list(request):
+    items = AuctionItem.objects.filter(is_active=True)
     return render(
-        request,
-        "view/index.html",
-        {
-            "title": "Publicaciones Activas"
-            # "articulos": activeAuctions,
-            # "image_url": image_url
-            # "categories": allCategories
-        },
+        request, "view/item_list.html", {"title": f"Articulos Activos", "items": items}
     )
 
 
-def addNewItem(request):
-    allCategories = Category.objects.all()
+@login_required
+def create_item(request):
+    if request.method == "POST":
+        item_form = AuctionItemForm(request.POST)
+        image_form = ItemImageForm(request.POST, request.FILES)
+        if item_form.is_valid() and image_form.is_valid():
+            item = item_form.save(commit=False)
+            item.seller = request.user
+            item.save()
+
+            for image in request.FILES.getlist("images"):
+                item_image = ItemImage(item=item, image=image)
+                item_image.save()
+
+            return redirect("auctions:item_detail", item_id=item.id)
+    else:
+        item_form = AuctionItemForm()
+        image_form = ItemImageForm()
     return render(
         request,
-        "view/addArticulo.html",
-        {"title": f"Publica tu Articulo hoy mismo", "Categories": allCategories},
+        "view/create_item.html",
+        {"item_form": item_form, "image_form": image_form},
     )
+
+
+# @login_required
+# def add_comment(request, item_id):
+#     item = AuctionItem.objects.get(pk=item_id)
+#     if request.method == "POST":
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.item = item
+#             comment.user = request.user
+#             comment.save()
+#             return redirect("auctions:item_detail", item_id=item.id)
+#     else:
+#         form = CommentForm()
+#     return render(request, "view/add_comment.html", {"form": form, "item": item})
 
 
 def login_view(request):
     if request.method == "POST":
         # Attempt to sign user in
-        username = request.POST["email"]
+        username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
 
         # Check if authentication successful
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse("auctions:index"))
+            return HttpResponseRedirect(reverse("auctions:item_list"))
         else:
             return render(
                 request,
@@ -52,12 +78,12 @@ def login_view(request):
                 {"message": "Invalid username and/or password."},
             )
     else:
-        return render(request, "auth/login.html", {"title": "Ingresa ahora en BidHub"})
+        return render(request, "auth/login.html")
 
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("auctions:index"))
+    return HttpResponseRedirect(reverse("auctions:item_list"))
 
 
 def register(request):
@@ -82,7 +108,7 @@ def register(request):
                 request, "auth/register.html", {"message": "Username already taken."}
             )
         login(request, user)
-        return HttpResponseRedirect(reverse("auctions:index"))
+        return HttpResponseRedirect(reverse("auctions:item_list"))
     else:
         return render(
             request, "auth/register.html", {"title": "Registrate ahora en BidHub"}

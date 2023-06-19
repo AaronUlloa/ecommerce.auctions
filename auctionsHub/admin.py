@@ -1,19 +1,18 @@
 from django.contrib import admin
 from .models import (
-    User,
-    Category,
     Bid,
-    Item,
+    User,
     Like,
     Cart,
-    Order,
-    Auction,
     Comment,
+    Category,
+    Purchase,
     ItemImage,
+    AuctionItem,
 )
 
 # Register your models here.
 
 admin.site.register(
-    [User, ItemImage, Comment, Auction, Order, Cart, Like, Item, Bid, Category]
+    [Category, AuctionItem, ItemImage, Purchase, Comment, Cart, Like, User, Bid]
 )

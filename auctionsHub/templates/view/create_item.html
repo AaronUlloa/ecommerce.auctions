@@ -5,20 +5,23 @@
 <main class="listing">
   <h2 class="listing__heading">{{ title }}</h2>
   <div class="listing__container-buton">
-    <a class="listing__buton" href="{% url 'auctions:index' %}">
+    <a class="listing__buton" href="{% url 'auctions:item_list' %}">
       <i class="fa-solid fa-circle-arrow-left">
         Volver
       </i>
     </a>
   </div>
   <div class="listing__forms">
-    <form class="forms" action="{% url 'auctions:auction' %}" enctype="multipart/form-data" method="POST">
+    <form class="forms" action="{% url 'auctions:create_item' %}" enctype="multipart/form-data" method="POST">
       {% csrf_token %}
-        {% include "./forms/formsArticulos.html" %}
+        {% include "./forms/formsArticulos.html" %} 
         <input type="submit" class="forms__submit forms__submit--registrar" value="Publicar Articulo">
     </form>
   </div>
 </main>
+<section>
+  {% include "./footer/item_list_f.html" %} 
+</section>
 
 {% endblock %}
 
