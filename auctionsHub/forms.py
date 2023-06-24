@@ -21,14 +21,14 @@ class AuctionItemForm(forms.ModelForm):
         queryset=Category.objects.all(),
         widget=forms.Select(attrs={"class": "forms__input"}),
     )
-    starting_price = forms.DecimalField(
-        label="Precio de inicio",
+    current_price = forms.DecimalField(
+        label="Precio Actual",
         max_digits=10,
         decimal_places=2,
         widget=forms.TextInput(attrs={"class": "forms__input"}),
     )
-    current_price = forms.DecimalField(
-        label="Precio Actual",
+    starting_price = forms.DecimalField(
+        label="Precio de inicio",
         max_digits=10,
         decimal_places=2,
         widget=forms.TextInput(attrs={"class": "forms__input"}),
@@ -84,10 +84,3 @@ class ItemImageForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
-
-
-class CustomClearableFileInput(forms.ClearableFileInput):
-    def __init__(self, *args, **kwargs):
-        attrs = kwargs.setdefault("attrs", {})
-        attrs["class"] = "form-control-file custom-class"
-        super().__init__(*args, **kwargs)

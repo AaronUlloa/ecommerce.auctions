@@ -21,7 +21,15 @@
     @content;
   }
 }
-
+@mixin modals($bgcolor){
+  &:hover{
+    &:focus{
+      color: $bgcolor;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
 @mixin boton($bgColor, $colorTexto) {
   background-color: $bgColor;
   padding: 0.5rem 1rem;
